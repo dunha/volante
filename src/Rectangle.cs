@@ -62,7 +62,9 @@ namespace Volante
         /// </summary>
         public long Area()
         {
-            return (long)(bottom - top) * (right - left);
+            //return (bottom - top) * (right - left);
+			// Upend rectangle
+			return (top - bottom) * (right - left);
         }
 
         /// <summary>
@@ -70,11 +72,19 @@ namespace Volante
         /// </summary>
         public static long JoinArea(Rectangle a, Rectangle b)
         {
-            int left = (a.left < b.left) ? a.left : b.left;
-            int right = (a.right > b.right) ? a.right : b.right;
-            int top = (a.top < b.top) ? a.top : b.top;
-            int bottom = (a.bottom > b.bottom) ? a.bottom : b.bottom;
-            return (long)(bottom - top) * (right - left);
+            //double left = (a.left < b.left) ? a.left : b.left;
+            //double right = (a.right > b.right) ? a.right : b.right;
+            //double top = (a.top < b.top) ? a.top : b.top;
+            //double bottom = (a.bottom > b.bottom) ? a.bottom : b.bottom;
+            //return (bottom - top) * (right - left);
+            
+			// Upend rectangle
+			
+            double left = (a.left < b.left) ? a.left : b.left;
+            double right = (a.right > b.right) ? a.right : b.right;
+            double top = (a.top > b.top) ? a.top : b.top;
+            double bottom = (a.bottom < b.bottom) ? a.bottom : b.bottom;
+			return (top - bottom) * (right - left);
         }
 
         /// <summary>
@@ -93,7 +103,7 @@ namespace Volante
         /// </summary>
         public Rectangle(int top, int left, int bottom, int right)
         {
-            Debug.Assert(top <= bottom && left <= right);
+            //Debug.Assert(top <= bottom && left <= right);
             this.top = top;
             this.left = left;
             this.bottom = bottom;
@@ -107,16 +117,29 @@ namespace Volante
         /// </param>
         public void Join(Rectangle r)
         {
+            //if (left > r.left)
+            //    left = r.left;
+
+            //if (right < r.right)
+            //    right = r.right;
+
+            //if (top > r.top)
+            //    top = r.top;
+
+            //if (bottom < r.bottom)
+            //    bottom = r.bottom;
+            
+			// Upend rectangle
             if (left > r.left)
                 left = r.left;
 
             if (right < r.right)
                 right = r.right;
 
-            if (top > r.top)
+            if (top < r.top)
                 top = r.top;
 
-            if (bottom < r.bottom)
+            if (bottom > r.bottom)
                 bottom = r.bottom;
         }
 
@@ -141,7 +164,9 @@ namespace Volante
         /// </summary>
         public bool Intersects(Rectangle r)
         {
-            return left <= r.right && top <= r.bottom && right >= r.left && bottom >= r.top;
+            //return left <= r.right && top <= r.bottom && right >= r.left && bottom >= r.top;
+			// Upend rectangle
+            return left <= r.right && top >= r.bottom && right >= r.left && bottom <= r.top;
         }
 
         /// <summary>
@@ -149,7 +174,9 @@ namespace Volante
         /// </summary>
         public bool Contains(Rectangle r)
         {
-            return left <= r.left && top <= r.top && right >= r.right && bottom >= r.bottom;
+            //return left <= r.left && top <= r.top && right >= r.right && bottom >= r.bottom;
+			// Upend rectangle
+            return left <= r.left && top >= r.top && right >= r.right && bottom <= r.bottom;
         }
 
         /// <summary>
