@@ -72,18 +72,18 @@ namespace Volante
         /// </summary>
         public static long JoinArea(Rectangle a, Rectangle b)
         {
-            //double left = (a.left < b.left) ? a.left : b.left;
-            //double right = (a.right > b.right) ? a.right : b.right;
-            //double top = (a.top < b.top) ? a.top : b.top;
-            //double bottom = (a.bottom > b.bottom) ? a.bottom : b.bottom;
+            //long left = (a.left < b.left) ? a.left : b.left;
+            //long right = (a.right > b.right) ? a.right : b.right;
+            //long top = (a.top < b.top) ? a.top : b.top;
+            //long bottom = (a.bottom > b.bottom) ? a.bottom : b.bottom;
             //return (bottom - top) * (right - left);
             
 			// Upend rectangle
 			
-            double left = (a.left < b.left) ? a.left : b.left;
-            double right = (a.right > b.right) ? a.right : b.right;
-            double top = (a.top > b.top) ? a.top : b.top;
-            double bottom = (a.bottom < b.bottom) ? a.bottom : b.bottom;
+            long left = (a.left < b.left) ? a.left : b.left;
+            long right = (a.right > b.right) ? a.right : b.right;
+            long top = (a.top > b.top) ? a.top : b.top;
+            long bottom = (a.bottom < b.bottom) ? a.bottom : b.bottom;
 			return (top - bottom) * (right - left);
         }
 
